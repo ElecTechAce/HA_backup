@@ -1,0 +1,15 @@
+########################################################################################################################
+# View - Full Command
+########################################################################################################################
+title: Full Command
+icon: mdi:settings
+cards:
+  - type: custom:auto-entities
+    card:
+      type: glance
+    filter:
+      include: [{}]
+      exclude:
+        - entity_id: "*yweather*"
+        - domain: group
+        - domain: zone  

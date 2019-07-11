@@ -1,0 +1,9 @@
+  tablet:
+    name: Master Tablet
+    all: false
+    entities:
+     - binary_sensor.tablet_motion
+     - camera.tablet_camera
+     - sensor.floorplan_date
+     - sensor.floorplan_time
+     - binary_sensor.movement

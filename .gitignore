@@ -1,0 +1,44 @@
+# Generic ignores
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+
+# Directory (contents) ignores
+/.cloud
+/.storage
+/deps
+/android
+/groups/devices_tracked.yaml
+/glances/glances.conf
+
+
+# Specific file ignores
+alexa_media.StonesAnchor@gmail.com.pickle
+.google_maps_location_sharing.cookies.stonesanchor_gmail_com
+.google.token
+google_calendars.yaml
+known_devices.yaml
+options.xml
+OZW_Log.txt
+pyozw.sqlite
+secrets.yaml
+config/zwcfg_*
+config/zwscene.xml
+
+# ESPHome ignores
+#/esphome/secrets.yaml
+#/esphome/**/
+
+# Ignore add-on files
+
+# Ignore files created by IDE's
+.vscode
+.theia
+.Trash*
+
+# Specific keeps
+!.gitkeep

@@ -1,0 +1,9 @@
+  garage:
+    name: Garage
+    all: false
+    entities:
+      - automation.open_garage_when_arrive_home
+      - binary_sensor.garage_status
+      - switch.garage_opener
+      - switch.sonoff_1000674c8b
+      - timer.garage_open

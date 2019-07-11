@@ -1,0 +1,1 @@
+This lovelace folder is created for the remote navigation custom card 

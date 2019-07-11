@@ -1,0 +1,9 @@
+  lights:
+    entities:
+      - light.sengled_kitchen
+      - light.sengled_entry
+      - light.sengled_hall
+      - light.sengled_babies
+      - light.sengled_reading
+      - light.sengled_porch
+      - light.sengled_entry_rgb

@@ -1,0 +1,41 @@
+###############################################################################
+#   @author         :   Christian Stone
+#   @date           :   06/07/2019
+#   @package        :   floorplan.yaml
+#   @description    :   Fire Tablet Alarm Panel
+#   @repo_url       :   http://www.vmwareinfo.com/2017/07/visualizing-smart-home-using-home.html
+################################################################################
+
+sensor:
+  - platform: systemmonitor
+    resources:
+    - type: disk_free
+      arg: /
+    - type: memory_free
+    - type: processor_use
+    - type: last_boot
+    
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+      
+##   AUTOMATIONS EXAMPLES TO USE WITH SYSTEM MONITOR COMPONENTS
+
+# automation:
+#   - alias: "Internet Speed Glow Connect Great"
+#     trigger:
+#     - platform: template
+#       value_template: "{{ states('sensor.speedtest_download')|float >= 10}}"
+#     action:
+#       - service: shell_command_green
+
+#  - alias: "Internet Speed Glow Connect Poor"
+#    trigger:
+#    - platform: template
+#      value_template: "{{ states('sensor.speedtest_download')|float < 10 }}"
+#      action: 
+#        - service: shell_command.red

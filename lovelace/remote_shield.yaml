@@ -1,0 +1,349 @@
+###################################################################################################
+## SHIELD CONTROLLER - HEADER - SHIELD LOGO
+###################################################################################################
+        type: custom:layout-card
+        layout: vertical
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: picture
+                  image: /local/lovelace/remote/shield_logo.png
+                style:
+                  padding: 10px 10px 10px 10px
+                  border-radius: 20px
+                  background-color: rgba(56,60,69,1)
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+##-------------------------------------------------------------------------------------------------
+## SHIELD - ROW 1 - 5 BUTTONS (ADB CONTROLLED + CUSTOM COMPONENT - ANDROIDTV)
+##-------------------------------------------------------------------------------------------------
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:youtube
+                  name: YOUTUBE
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "am start -a android.intent.action.VIEW -d -n com.google.android.youtube.tv/com.google.android.apps.youtube.tv.activity.ShellActivity"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:kodi
+                  name: KODI
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "am start -a android.intent.action.VIEW -d -n org.xbmc.kodi/.Splash"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:twitch
+                  name: TWITCH
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "am start -a android.intent.action.VIEW -d -n tv.twitch.android.app/tv.twitch.android.apps.TwitchActivity"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:netflix
+                  name: NETFLIX
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "am start -a android.intent.action.VIEW -d -n com.netflix.ninja/.MainActivity"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:youtube
+                  name: TV4PLAY
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "am start -a android.intent.action.VIEW -d -n se.tv4.tv4playtab/se.tv4.tv4play.startup.SplashActivity"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+##-------------------------------------------------------------------------------------------------
+## SHIELD - ROW 2 - 3 BUTTONS (ADB CONTROLLED + CUSTOM COMPONENT - ANDROIDTV)
+##-------------------------------------------------------------------------------------------------
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:power
+                  name: "ON"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: POWER
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:arrow-up-bold
+                  name: "UP"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: UP
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:power-off
+                  name: "OFF"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: SLEEP
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+##-------------------------------------------------------------------------------------------------
+## SHIELD - ROW 4 - 3 BUTTONS (ADB CONTROLLED + CUSTOM COMPONENT - ANDROIDTV)
+##-------------------------------------------------------------------------------------------------
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:arrow-left-bold
+                  name: "LEFT"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: LEFT
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:camera-control
+                  name: "ENTER"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: ENTER
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:arrow-right-bold
+                  name: "RIGHT"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: RIGHT
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+##-------------------------------------------------------------------------------------------------
+## SHIELD - ROW 5 - 3 BUTTONS (ADB CONTROLLED + CUSTOM COMPONENT - ANDROIDTV)
+##-------------------------------------------------------------------------------------------------
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:backburger
+                  name: "BACK"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: BACK
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:arrow-down-bold
+                  name: "DOWN"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: DOWN
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:home-circle
+                  name: "HOME"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: HOME
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+##-------------------------------------------------------------------------------------------------
+## SHIELD - ROW 6 - 3 BUTTONS (ADB CONTROLLED + CUSTOM COMPONENT - ANDROIDTV)
+##-------------------------------------------------------------------------------------------------
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:play
+                  name: "PLAY"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "input keyevent 126"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:pause
+                  name: "PAUSE"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "input keyevent 127"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              - type: custom:card-modder
+                card:
+                  type: entity-button
+                  icon: mdi:stop
+                  name: "STOP"
+                  entity: media_player.shield
+                  hold_action: none
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.shield
+                      command: "input keyevent 86"
+                style:
+                  background-color: rgba(56,60,69,1)
+                  border-radius: 20px
+                  border: solid 3px rgba(118,185,0,1)
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)

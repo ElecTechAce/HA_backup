@@ -1,0 +1,75 @@
+- id: '1557560248158'
+  alias: Turn the Lights on at sunset
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: light.hallway
+    service: light.turn_on
+  - data:
+      entity_id: light.living_lamp
+    service: light.turn_on
+  - data:
+      entity_id: light.entry
+    service: light.turn_on
+  - data:
+      entity_id: light.reading
+    service: light.turn_on
+- id: '1558569291128'
+  alias: Turn All Lights Off At Sunrise
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: group.all_lights
+    service: light.turn_off
+- id: '1562224891195'
+  alias: Open Garage When Arrive Home
+  trigger:
+  - entity_id: device_tracker.christian_phone
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: binary_sensor.garage_status
+    state: 'off'
+  action:
+  - alias: ''
+    data:
+      entity_id: switch.garage_opener
+    service: switch.turn_on
+- id: '1562300071866'
+  alias: Pushbullet Test
+  trigger:
+  - entity_id: switch.sonoff_1000674c8b
+    for: 00:20
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      message: The sun is {% if is_state('sun.sun', 'above_horizon') %}up{% else %}down{%
+        endif %}!
+    service: notify.notify_christian
+- id: '1562300980897'
+  alias: Notify Garage Left Open Test
+  trigger:
+  - entity_id: binary_sensor.garage_status
+    for: 00:20
+    from: close
+    platform: state
+    to: open
+  condition:
+  - after: sunrise
+    before: sunset
+    condition: sun
+  action:
+  - alias: ''
+    data: {}
+    service: notify.notify

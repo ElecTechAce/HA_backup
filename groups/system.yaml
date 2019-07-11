@@ -1,0 +1,12 @@
+  system:
+    name: System
+    entities:
+      - binary_sensor.remote_ui
+      - sensor.disk_free
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+      - sensor.processor_use
+      - sensor.memory_free
+      - sensor.ha_installed_version
+      - sensor.ha_uptime

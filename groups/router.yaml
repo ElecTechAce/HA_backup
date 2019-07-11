@@ -1,0 +1,11 @@
+  router:
+    name: Router
+    entities:
+     - sensor.centurylink_bytes_received
+     - sensor.centurylink_bytes_sent
+     - sensor.centurylink_kbps_rec
+     - sensor.centurylink_kbps_sent
+     - sensor.centurylink_packets_rec
+     - sensor.centurylink_packets_received
+     - sensor.centurylink_packets_sent
+     - sensor.centurylink_packets_sent_sec

@@ -1,0 +1,366 @@
+#########################################
+#                                       #
+#       Custom Card Lovelace pluging    #
+#                                       #
+#                                       #
+#########################################
+
+# Future plan to condense all resources into a seperate folder
+#resources: !include_dir_list lovelace/resources
+resources:
+
+  
+## HACS Custom Elements  
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+  - url: /community_plugin/atomic_calendar/atomic_calendar.js
+    type: module
+  - url: /community_plugin/surveillance-card/surveillance-card.js
+    type: module
+    
+  - url: /local/lovelace-fullykiosk.js
+    type: js
+  - url: /local/kiosk-config.js
+    type: js
+  - url: /local/resources/card_config/auto-entities.js
+    type: js
+  - url: /local/resources/media/jukebox.js
+    type: module
+    
+  - url: /local/resources/card_config/card-tools.js?track=true
+    type: js
+  - url: /local/resources/card_config/layout-card.js
+    type: js
+  - url: /local/resources/card_config/card-modder.js
+    type: js
+  - url: /local/resources/card_config/state-switch.js
+    type: js
+##Cards for Floorplan    
+  - url: /local/resources/floorplan/floorplan-card.js
+    type: module
+  - url: /local/resources/floorplan/plan-coordinates.js
+    type: js
+    
+## Media Cards Plugins    
+  - url: /local/resources/media/mini-media-player-bundle.js
+    type: module
+
+  - url: /local/resources/media/radial-menu.js
+    type: module
+
+## OTHER
+  - url: /local/resources/mini-graph-card-bundle.js
+    type: module
+
+  - url: /local/resources/slider-entity-row.js
+    type: js
+
+  - url: /local/resources/popup-card.js
+    type: js
+    
+  - url: /local/resources/text-divider-row.js
+    type: js
+    
+  - url: /local/resources/button-card.js
+    type: js
+
+
+#################################
+#       VIEWS                   #
+#################################
+
+title: StonesAnchor HQ
+
+#background: center / cover no-repeat url("/background.png") fixed
+cch:
+  background: 'rgba(0, 0, 0, 1.0)'
+  default_tab: '0'
+  voice: show
+  menu: show
+  options: show
+  notifications: clock
+  clock_format: '12'
+  clock_date: true
+  date_locale: en-gb
+  chevrons: true
+  swipe: true
+  swipe_animate: fade
+
+  
+  
+views:
+  - title: Main
+    path: main
+    cards:
+## Light Buttons
+      - type: horizontal-stack
+        cards:
+    
+          - type: entity-button
+            entity:  light.sengled_entry_rgb
+            name: Entry
+            icon: mdi:lightbulb
+            tap_action: 
+              action: call-service
+              service: homeassistant.toggle
+              service_data: {"entity_id": "light.sengled_entry_rgb"}
+
+          - type: entity-button
+            entity: light.sengled_hall
+            name: Hallway
+            icon: mdi:lightbulb
+            tap_action: 
+              action: call-service
+              service: homeassistant.toggle
+              service_data: {"entity_id": "light.sengled_hall"}
+
+          - type: entity-button
+            entity: light.sengled_reading
+            name: Reading
+            icon: mdi:lightbulb
+            tap_action: 
+              action: call-service
+              service: homeassistant.toggle
+              service_data: {"entity_id": "light.sengled_reading"}
+
+          - type: entity-button
+            entity: light.sengled_kitchen
+            name: Kitchen
+            icon: mdi:lightbulb
+            tap_action: 
+              action: call-service
+              service: homeassistant.toggle
+              service_data: {"entity_id": "light.sengled_kitchen"}
+
+          - type: entity-button
+            entity: light.sengled_porch
+            name: Porch
+            icon: mdi:lightbulb
+            tap_action: 
+              action: call-service
+              service: homeassistant.toggle
+              service_data: {"entity_id": "light.sengled_porch"}
+
+
+## Power Buttons
+      - type: entities
+        title: Lighting Control
+        show_header_toggle: false
+        entities:
+          - type: 'custom:text-divider-row'
+            text: Lights
+          - type: divider
+          - type: custom:slider-entity-row
+            entity: light.sengled_reading
+          - type: custom:slider-entity-row
+            entity: light.sengled_hall
+          - type: custom:slider-entity-row
+            entity: light.sengled_entry_rgb
+          - type: custom:slider-entity-row
+            entity: light.sengled_kitchen
+          - type: custom:slider-entity-row
+            entity: light.sengled_porch
+
+          - type: 'custom:text-divider-row'
+            text: Outlets
+          - type: divider
+          - switch.game_room_tv
+          - switch.master_bedroom_tv
+
+          - type: 'custom:text-divider-row'
+            text: Garage Door
+          - type: divider
+          - switch.garage_opener
+          - binary_sensor.garage_status
+
+##  Atomic Calendar Card
+################################
+  - title: Atomic Calendar
+    icon: mdi:calendar
+    path: calendar
+    cards:
+      - type: "custom:atomic-calendar"
+        title: "Today"
+        showMonth: true
+        maxDaysToShow: 7
+        startDaysAhead: 0
+        defaultMode: 1
+        #showDate: true
+        dayWrapperLineColor: orange
+        entities:
+          - entity: calendar.personal_calendar
+          - entity: calendar.work
+            color: cornflowerblue 
+            dayWrapperLineColor: orange 
+
+      - type: "custom:atomic-calendar"
+        title: "Calendar"
+        enableModeChange: true
+        defaultMode: 2
+        entities:
+          - entity: calendar.electechace_gmail_com
+          - entity: calendar.work
+          - entity: calendar.family_calendar
+
+
+##WEATHER STATION
+#####################
+  - title: Weather
+    icon: mdi:temperature-fahrenheit
+    path: weather
+    cards:
+      - type: iframe
+        url: >-
+          https://embed.windy.com/embed2.html?lat=36.214&lon=-115.282&zoom=9&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=36.214&detailLon=-115.282&metricWind=default&metricTemp=default&radarRange=-1
+        aspect_ratio: 100%
+        
+
+##  Floorplan
+###############################
+#  - title: Floorplan
+#    id: main-floor
+#    icon: mdi:floor-plan
+#    panel: false
+#    cards:
+#      - type: vertical-stack
+#        cards: 
+#          - type: custom:plan-coordinates                    
+#          - type: picture-elements
+#            image: /local/eta_floorplan/images/home.png
+#            elements:
+#              - type: state-icon
+#                entity: light.babies
+#                tap_action: toggle
+#                style:
+#                  top: 48%
+#                  left: 65%
+#
+#              - type: state-icon
+#                entity: light.entry
+#                tap_action: toggle
+#                style:
+#                  top: 79%
+#                  left: 76%
+                  
+                  
+#              - type: state-icon
+#                entity: light.hallway
+#                tap_action: toggle
+#                style:
+#                  top: 53%
+#                  left: 71%
+                  
+#              - type: state-icon
+#                entity: light.living_lamp
+#                tap_action: toggle
+#                style:
+#                  top: 54%
+#                  left: 85%
+                  
+#              - type: state-icon
+#                entity: light.porch
+#                tap_action: toggle
+#                style:
+#                  top: 86%
+#                  left: 81%
+                  
+#              - type: state-icon
+#                entity: light.reading
+#                tap_action: toggle
+#                style:
+#                  top: 27%
+#                  left: 62%    
+
+##FLOORPLAN #2
+##########################
+#  - title: Floorplan
+#    id: main-floor
+#    icon: mdi:home-assistant
+#    panel: false
+#    cards:
+#      - type: 'custom:floorplan-card'
+#        image: /local/custom_ui/floorplan/examples/simple/simple.svg
+#        stylesheet: /local/floorplan_org/examples/simple/simple.css?v=1.1.14
+#        log_level: error
+#        rules:
+#          - action:
+#            entity: switch.living_area_fan
+#            element: switch.living_area_fan
+#            service: homeassistant.toggle
+#          - action:
+#            entity: light.porch
+#            element: light.porch
+#            service: homeassistant.toggle
+#          - action:
+#            entity: light.babies
+#            element: light.babies
+#            class_template: 'background-${entity.state}'
+#            service: homeassistant.toggle
+#          - action:
+#            more_info: false
+#            image_template: '/local/custom_ui/floorplan/examples/simple/light_${entity.state}.svg'
+#            entity: light.entry
+#            element: light.entry
+#            service: homeassistant.toggle
+
+##  Media VIEW
+################################
+  - title: Mini Media Player
+    icon: mdi:music
+    path: music
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.living_room_tv
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.master_tv
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.bar_tv
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.master_echo
+        artwork: cover
+        source: icon
+
+## Surviellance
+  - title: Surviellance
+    icon: mdi:camera-iris
+    path: cctv
+    cards:
+      - type: custom:surveillance-card
+        thumb_interval: 15
+        update_interval: 2
+        cameras:
+          - entity:  camera.dashboard_camera
+            motion_entity: binary_sensor.dashboard_motion
+
+
+  - !include lovelace/full_command.yaml            
+  - !include lovelace/jukebox.yaml
+  - !include lovelace/remote_navigation.yaml
+#  - !include lovelace/settings.yaml
+        
+##  FOURTH VIEW
+################################
+##  - title: Mini Graph
+##    cards:
+
+          
+
+#Picture-entity navigation to another page
+##Picture card config:
+
+#- type: picture
+#  image: /local/living_room.png
+#  tap_action:
+#    action: navigate
+#    navigation_path: /lovelace/living_room
+
+# The picture entity card will represent an entity with a picture
+#      - type: picture-entity
+#        image: https://www.home-assistant.io/images/default-social.png
+#        entity: light.reading

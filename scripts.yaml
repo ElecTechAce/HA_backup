@@ -1,0 +1,75 @@
+'1562286299488':
+  alias: Light On
+  sequence:
+  - data:
+      entity_id: light.sengled_reading
+    service: homeassistant.turn_on
+'1562286419534':
+  alias: Light Off
+  sequence:
+  - data:
+      entity_id: light.sengled_reading
+    service: homeassistant.turn_off
+'1562397019105':
+  alias: Master FTV HOME
+  sequence:
+  - data:
+      command: HOME
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562397178391':
+  alias: Master FTV PAUSE
+  sequence:
+  - data:
+      command: PAUSE
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411380793':
+  alias: MASTER FTV BACK
+  sequence:
+  - data:
+      command: BACK
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411467816':
+  alias: MASTER FTV UP
+  sequence:
+  - data:
+      command: UP
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411518931':
+  alias: MASTER FTV DOWN
+  sequence:
+  - data:
+      command: DOWN
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411573913':
+  alias: MASTER FTV MENU
+  sequence:
+  - data:
+      command: MENU
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411608747':
+  alias: MASTER FTV RIGHT
+  sequence:
+  - data:
+      command: RIGHT
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411678510':
+  alias: MASTER FTV LEFT
+  sequence:
+  - data:
+      command: LEFT
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command
+'1562411933683':
+  alias: MASTER FTV ENTER
+  sequence:
+  - data:
+      command: ENTER
+      entity_id: media_player.master_firestick
+    service: androidtv.adb_command

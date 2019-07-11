@@ -1,0 +1,11 @@
+  light_sensor:
+    name: Light Sensors
+    entities:
+      - sensor.sengled_kitchen
+      - sensor.sengled_entry
+      - sensor.sengled_hall
+      - sensor.sengled_babies
+      - sensor.sengled_reading
+      - sensor.sengled_porch
+      - sensor.sengled_entry_rgb
+      

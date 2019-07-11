@@ -1,0 +1,55 @@
+input_select:
+  destination:
+    name: destination
+    options:
+      - Home
+      - Office
+      - Parents
+      - SLS
+      - Wynn
+      - Ceasars
+
+sensor:
+  - platform: template
+    sensors:
+       dest_address:
+         value_template: >-
+            {%- if is_state("input_select.destination", "Home")  -%} 
+              1428 Sapphire Springs Circle, Las Vegas, NV 89108, USA
+              
+            {%- elif is_state("input_select.destination", "Office")  -%}
+              6283 S Valley View Blvd, Las Vegas, NV 89118, USA
+              
+            {%- elif is_state("input_select.destination", "Parents")  -%}
+              3238 Westfield St, Las Vegas, NV 89121, USA
+              
+            {%- elif is_state("input_select.destination", "SLS")  -%}
+              2535 S Las Vegas Blvd, Las Vegas, NV 89109, USA
+              
+            {%- elif is_state("input_select.destination", "Wynn")  -%}
+              3131 S Las Vegas Blvd, Las Vegas, NV 89109, USA
+              
+            {%- elif is_state("input_select.destination", "Ceasars")  -%}
+              3500 S Las Vegas Blvd, Las Vegas, NV 89109, USA
+
+            {%- else -%}
+              Unknown
+            {%- endif %}
+    
+## Tracking entity to entity
+  - platform: waze_travel_time
+    name: "Me to destination"
+    origin: device_tracker.christian_phone
+    destination: sensor.dest_address
+    region: 'US'
+    units: imperial
+    vehicle_type: car
+
+## Tracking entity to zone friendly name
+  # - platform: waze_travel_time
+  #   name: Time to Mom and Dads
+  #   origin: zone.home
+  #   destination: Parents House    # Friendly name of a zone
+  #   region: 'US'
+  #   units: imperial
+  #   vehicle_type: car

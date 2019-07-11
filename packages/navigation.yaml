@@ -1,0 +1,16 @@
+############################################################################
+## Input Select
+## (A entity thats needed for the buttons to change color when active)
+############################################################################
+input_select:
+  remote:
+    name: Select Remote Controll
+    options:
+      - NETFLIX
+      - PLUTO
+      - HULU
+      - CHANNELS
+      - RADIO
+    initial: NETFLIX
+    icon: mdi:remote
+    

@@ -1,0 +1,18 @@
+switch.sonoff_1000674c8b:
+  hidden: true
+zha.sengled_reading:
+  hidden: true
+zha.sengled_babies:
+  hidden: true
+zha.sengled_entry:
+  hidden: true
+zha.sengled_porch:
+  hidden: true
+zha.sengled_kitchen:
+  hidden: true
+zha.sengled_hall:
+  hidden: true
+zha.sengled_e11_g13:
+  hidden: true
+sensor.yr_symbol:
+  friendly_name: Forecast

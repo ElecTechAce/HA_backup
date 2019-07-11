@@ -1,0 +1,11 @@
+##      ALEXA TTS
+alias: Alexa TTS test
+sequence:
+  - data:
+      data:
+        method: all
+        type: announce
+      message: test, hunny bunny I love you
+      target:
+      - Echo
+    service: notify.alexa_media_master_echo

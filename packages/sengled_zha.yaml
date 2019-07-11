@@ -1,0 +1,6 @@
+##~~~~~~~~~~~~~~~~~Sengled Lights Integration  
+#____________________________________________________
+
+zha:
+  usb_path: /dev/ttylUSB1
+  database_path: /config/zigbee.db

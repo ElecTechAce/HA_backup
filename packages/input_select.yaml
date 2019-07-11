@@ -1,0 +1,49 @@
+#################################
+#     INPUT SELECTS
+#################################3
+input_select:
+  threat:
+    name: Threat level
+    options:
+     - 0
+     - 1
+     - 2
+     - 3
+    initial: 0
+    
+  who_cooks:
+    name: Who cooks today
+    options:
+     - Christian
+     - Koyah
+     - Delivery
+    initial: Delivery    
+
+  holiday:
+    name: Holiday Lighting
+    options:
+      - None
+      - Valentine's Day
+      - St. Patrick's Day
+      - Easter
+      - Memorial Day
+      - Independence Day
+      - Labor Day
+      - Halloween
+      - Veterans Day
+      - Thanksgiving
+      - Christmas
+      - New Year's Eve
+      - Red Sox Game
+      - Eagles Game
+      - SF 49ers Game
+    icon: mdi:gift
+
+  video_device:
+    name: Select TV
+    options:
+     - Master
+     - Living
+     - Bar
+    initial: Master
+    icon: mdi:remote

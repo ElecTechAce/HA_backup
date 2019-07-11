@@ -1,0 +1,11 @@
+
+##################################
+#
+##   Vesync Outlets integration
+#
+###################################
+switch:
+  - platform: vesync
+    username: !secret vesync_name
+    password: !secret vesync_pass
+

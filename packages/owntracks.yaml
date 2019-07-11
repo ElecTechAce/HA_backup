@@ -1,0 +1,10 @@
+owntracks:
+  max_gps_accuracy: 200
+  waypoints: true
+  mqtt_topic: "owntracks/#"
+  events_only: true
+  waypoint_whitelist:
+    - christian
+  region_mapping:
+    home: home
+    office: office

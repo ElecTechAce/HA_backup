@@ -1,0 +1,151 @@
+homeassistant:
+  name: StonesAnchor
+  latitude: !secret secret_latitude
+  longitude: !secret secret_longitude
+  elevation: 0
+  unit_system: imperial
+  time_zone: America/Los_Angeles
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+  
+default_config:
+ # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+ # http:
+ #   base_url: !secret secret_base
+#shell_command:
+#  restart_pow: touch ~/.pow/restart.txt
+hacs:
+  token: !secret secret_hacs
+
+frontend:
+  javascript_version: latest
+  themes: !include_dir_merge_named themes
+
+lovelace:
+ mode: yaml
+discovery:
+  ignore:
+    - sonos
+    - samsung_tv
+  enable:
+
+cloud: 
+alexa:
+
+##  BINARY SENSORS
+###################
+# Binary Sensor TABLET MOTION        
+binary_sensor:
+  - platform: ping
+    host: !secret ping_host
+    count: 2
+  - platform: mqtt
+    name: tablet_motion
+    state_topic: any/value
+
+# Binary Sensor for Alexa Media Player LAst called device
+  - platform: template
+    sensors:
+      last_alexa:
+        entity_id:
+            - media_player.bar_tv
+            - media_player.master_echo
+            - media_player.living_room_tv
+            - media_player.master_tv
+        value_template: >
+          {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
+
+    ##TABLET LIGHT
+light:
+  - platform: template
+    lights:
+      tablet_screen:
+        turn_on:
+        turn_off:
+#        set_level:
+
+    ## TABLET CAMERA
+camera:
+  - name: tablet_camera
+    platform: generic
+    still_image_url: !secret tablet_url
+
+
+## FIRE TV MEDIA PLAYERS
+#########################
+media_player:
+  - platform: androidtv
+    name: "Master Firestick"
+    host: !secret master_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+    apps:  
+       com.netflix.ninja: "Netflix"
+       com.google.android.tvlauncher: "Home"
+       com.amazon.tv.launcher: "Amazon Prime Video"
+       com.bamnetworks.mobile.android.gamedayatbat: "MLB at bat"
+       com.pandora.android.gtv: "Pandora"
+       com.hulu.plus: "Hulu"
+       org.xbmc.kodi: "Kodi"
+       org.mozilla.tv.firefox: "Youtube"
+  - platform: androidtv
+    name: "Living Firestick"
+    host: !secret living_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+
+  - platform: androidtv
+    name: "Bar Firestick"
+    host: !secret bar_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+ 
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.com
+      scan_interval: 30
+      exclude_devices:
+      - "Koyah's Alexa Apps"
+      - "Mackenzie's Alexa Apps"
+      - "This Device"
+
+notify:
+  - platform: alexa_media
+    friendly_name: notify_echo
+  - platform: pushbullet
+    name: notify.christian
+    api_key: !secret pushbullet_api
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+panel_iframe:
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret panel_ide
+
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts:
+     - 192.168.0.1/24
+     - 10.0.0.2
+     - 10.0.0.15
+  - platform: ping
+    hosts:
+      hostone: 192.168.0.1
+  - platform: bluetooth_tracker
+   
+recorder:
+  purge_keep_days: 2
+
+## Split up configuration
+script: !include scripts.yaml
+group: !include_dir_merge_named groups
+automation: !include automations.yaml
+#automation: !include_dir_named automations.yaml
+# script: !include_dir_named scripts
