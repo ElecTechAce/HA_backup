@@ -6,18 +6,18 @@
 sensor:
   - platform: yr
 
-  - platform: darksky
-    api_key: !secret dark_key
-    monitored_conditions:
-    - summary
-    - temperature
-    - wind_speed
-    - cloud_cover
-    - humidity
-    - minutely_summary
-    - uv_index
-    - sunrise_time
-    - sunset_time
+#  - platform: darksky
+#    api_key: !secret dark_key
+    # monitored_conditions:
+    # - summary
+    # - temperature
+    # - wind_speed
+    # - cloud_cover
+    # - humidity
+    # - minutely_summary
+    # - uv_index
+    # - sunrise_time
+    # - sunset_time
 
 
 #############################

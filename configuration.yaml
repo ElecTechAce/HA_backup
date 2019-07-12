@@ -23,6 +23,7 @@ frontend:
 
 lovelace:
  mode: yaml
+
 discovery:
   ignore:
     - sonos
@@ -32,30 +33,23 @@ discovery:
 cloud: 
 alexa:
 
+weather:
+  - platform: darksky
+    api_key: !secret dark_key
+    mode: daily
+
+
 ##  BINARY SENSORS
-###################
-# Binary Sensor TABLET MOTION        
+#####################
 binary_sensor:
   - platform: ping
     host: !secret ping_host
     count: 2
+# Binary Sensor TABLET MOTION        
   - platform: mqtt
     name: tablet_motion
     state_topic: any/value
-
-# Binary Sensor for Alexa Media Player LAst called device
-  - platform: template
-    sensors:
-      last_alexa:
-        entity_id:
-            - media_player.bar_tv
-            - media_player.master_echo
-            - media_player.living_room_tv
-            - media_player.master_tv
-        value_template: >
-          {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
-
-    ##TABLET LIGHT
+##  TABLET LIGHT
 light:
   - platform: template
     lights:
@@ -63,53 +57,11 @@ light:
         turn_on:
         turn_off:
 #        set_level:
-
-    ## TABLET CAMERA
+# TABLET CAMERA
 camera:
   - name: tablet_camera
     platform: generic
     still_image_url: !secret tablet_url
-
-
-## FIRE TV MEDIA PLAYERS
-#########################
-media_player:
-  - platform: androidtv
-    name: "Master Firestick"
-    host: !secret master_host
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
-    apps:  
-       com.netflix.ninja: "Netflix"
-       com.google.android.tvlauncher: "Home"
-       com.amazon.tv.launcher: "Amazon Prime Video"
-       com.bamnetworks.mobile.android.gamedayatbat: "MLB at bat"
-       com.pandora.android.gtv: "Pandora"
-       com.hulu.plus: "Hulu"
-       org.xbmc.kodi: "Kodi"
-       org.mozilla.tv.firefox: "Youtube"
-  - platform: androidtv
-    name: "Living Firestick"
-    host: !secret living_host
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
-
-  - platform: androidtv
-    name: "Bar Firestick"
-    host: !secret bar_host
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
- 
-alexa_media:
-  accounts:
-    - email: !secret amazon_user
-      password: !secret amazon_password
-      url: amazon.com
-      scan_interval: 30
-      exclude_devices:
-      - "Koyah's Alexa Apps"
-      - "Mackenzie's Alexa Apps"
-      - "This Device"
 
 notify:
   - platform: alexa_media
@@ -128,7 +80,6 @@ panel_iframe:
     icon: mdi:code-braces
     url: !secret panel_ide
 
-
 device_tracker:
   - platform: nmap_tracker
     hosts:
@@ -143,7 +94,10 @@ device_tracker:
 recorder:
   purge_keep_days: 2
 
+# alarm_control_panel: !include resources/bwalarm/bwalarm.yaml
 ## Split up configuration
+# alarm_control_panel: !include alarm.yaml
+# panel_custom: !include panel_custom.yaml
 script: !include scripts.yaml
 group: !include_dir_merge_named groups
 automation: !include automations.yaml

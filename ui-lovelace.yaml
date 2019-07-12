@@ -17,6 +17,8 @@ resources:
     type: module
   - url: /community_plugin/surveillance-card/surveillance-card.js
     type: module
+  - url: /community_plugin/weather-card/weather-card.js
+    type: module
     
   - url: /local/lovelace-fullykiosk.js
     type: js
@@ -45,9 +47,6 @@ resources:
   - url: /local/resources/media/mini-media-player-bundle.js
     type: module
 
-  - url: /local/resources/media/radial-menu.js
-    type: module
-
 ## OTHER
   - url: /local/resources/mini-graph-card-bundle.js
     type: module
@@ -63,11 +62,10 @@ resources:
     
   - url: /local/resources/button-card.js
     type: js
+    
 
 
-#################################
-#       VIEWS                   #
-#################################
+
 
 title: StonesAnchor HQ
 
@@ -88,6 +86,9 @@ cch:
 
   
   
+#################################
+#       VIEWS                   #
+#################################
 views:
   - title: Main
     path: main
@@ -173,7 +174,11 @@ views:
           - switch.garage_opener
           - binary_sensor.garage_status
 
-##  Atomic Calendar Card
+
+################################
+#
+#     Atomic Calendar Card
+#
 ################################
   - title: Atomic Calendar
     icon: mdi:calendar
@@ -213,9 +218,11 @@ views:
         url: >-
           https://embed.windy.com/embed2.html?lat=36.214&lon=-115.282&zoom=9&level=surface&overlay=temp&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=36.214&detailLon=-115.282&metricWind=default&metricTemp=default&radarRange=-1
         aspect_ratio: 100%
-        
+      - type: custom:weather-card
+        entity: weather.dark_sky
+        name: Forecast
 
-##  Floorplan
+        ##  Floorplan
 ###############################
 #  - title: Floorplan
 #    id: main-floor
@@ -339,9 +346,9 @@ views:
             motion_entity: binary_sensor.dashboard_motion
 
 
-  - !include lovelace/full_command.yaml            
+#  - !include lovelace/full_command.yaml            
   - !include lovelace/jukebox.yaml
-  - !include lovelace/remote_navigation.yaml
+#  - !include lovelace/remote_navigation.yaml
 #  - !include lovelace/settings.yaml
         
 ##  FOURTH VIEW

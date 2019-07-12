@@ -1,0 +1,28 @@
+## FIRE TV MEDIA PLAYERS
+#########################
+media_player:
+  - platform: androidtv
+    name: "Master Firestick"
+    host: !secret master_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+    apps:  
+       com.netflix.ninja: "Netflix"
+       com.google.android.tvlauncher: "Home"
+       com.amazon.tv.launcher: "Amazon Prime Video"
+       com.bamnetworks.mobile.android.gamedayatbat: "MLB at bat"
+       com.pandora.android.gtv: "Pandora"
+       com.hulu.plus: "Hulu"
+       org.xbmc.kodi: "Kodi"
+       org.mozilla.tv.firefox: "Youtube"
+  - platform: androidtv
+    name: "Living Firestick"
+    host: !secret living_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+
+  - platform: androidtv
+    name: "Bar Firestick"
+    host: !secret bar_host
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037

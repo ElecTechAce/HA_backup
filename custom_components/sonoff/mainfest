@@ -1,0 +1,8 @@
+{
+        "domain": "sonoff",
+        "name": "Sonoff sensor custom component",
+        "documentation": "https://github.com/peterbuga/HASS-sonoff-ewelink",
+        "requirements": [],
+        "dependencies": [],
+        "codeowners": ["@peterbuga"]
+}

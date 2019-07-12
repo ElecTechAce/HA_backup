@@ -1,0 +1,29 @@
+##############################
+#
+#     ALEXA MEDIA
+#
+#############################33
+
+
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.com
+      scan_interval: 30
+      exclude_devices:
+      - "Koyah's Alexa Apps"
+      - "Mackenzie's Alexa Apps"
+      - "This Device"
+      
+binary_sensor:
+  - platform: template
+    sensors:
+      last_alexa:
+        entity_id:
+            - media_player.bar_tv
+            - media_player.master_echo
+            - media_player.living_room_tv
+            - media_player.master_tv
+        value_template: >
+          {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}
